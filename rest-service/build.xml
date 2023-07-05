@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TAGME" basedir=".">
+
+	<property name="lib" value="${basedir}/lib"/>
+	<property name="extlib" value="${basedir}/ext_lib"/>
+
+	<target name="get-deps">
+		<get dest="${basedir}/lib/jsap-2.1.jar"                   src="http://search.maven.org/remotecontent?filepath=com/martiansoftware/jsap/2.1/jsap-2.1.jar" />
+		<get dest="${basedir}/lib/commons-beanutils-1.8.3.jar"    src="http://search.maven.org/remotecontent?filepath=commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar" />
+		<get dest="${basedir}/lib/commons-codec-1.5.jar"          src="http://search.maven.org/remotecontent?filepath=commons-codec/commons-codec/1.5/commons-codec-1.5.jar" />
+		<get dest="${basedir}/lib/commons-collections-3.2.1.jar"  src="http://search.maven.org/remotecontent?filepath=commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar" />
+		<get dest="${basedir}/lib/commons-configuration-1.7.jar"  src="http://search.maven.org/remotecontent?filepath=commons-configuration/commons-configuration/1.7/commons-configuration-1.7.jar" />
+		<get dest="${basedir}/lib/commons-io-2.0.1.jar"           src="http://search.maven.org/remotecontent?filepath=commons-io/commons-io/2.0.1/commons-io-2.0.1.jar" />
+		<get dest="${basedir}/lib/commons-lang-2.6.jar"           src="http://search.maven.org/remotecontent?filepath=commons-lang/commons-lang/2.6/commons-lang-2.6.jar" />
+		<get dest="${basedir}/lib/commons-logging-1.1.1.jar"      src="http://search.maven.org/remotecontent?filepath=commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" />
+		<get dest="${basedir}/lib/dsiutils-2.0.4.jar"             src="http://search.maven.org/remotecontent?filepath=it/unimi/dsi/dsiutils/2.0.4/dsiutils-2.0.4.jar" />
+		<get dest="${basedir}/lib/fastutil-6.4.1.jar"             src="http://search.maven.org/remotecontent?filepath=it/unimi/dsi/fastutil/6.4.1/fastutil-6.4.1.jar" />
+		<get dest="${basedir}/lib/sux4j-3.0.2.jar"                src="http://search.maven.org/remotecontent?filepath=it/unimi/dsi/sux4j/3.0.2/sux4j-3.0.2.jar" />
+		<get dest="${basedir}/lib/webgraph-3.0.4.jar"             src="http://search.maven.org/remotecontent?filepath=it/unimi/dsi/webgraph/3.0.4/webgraph-3.0.4.jar" />
+		<get dest="${basedir}/lib/commons-digester3-3.0.jar"      src="http://search.maven.org/remotecontent?filepath=org/apache/commons/commons-digester3/3.0/commons-digester3-3.0.jar" />
+		<get dest="${basedir}/lib/lucene-core-3.4.0.jar"          src="http://search.maven.org/remotecontent?filepath=org/apache/lucene/lucene-core/3.4.0/lucene-core-3.4.0.jar" />
+		<get dest="${basedir}/lib/json-20131018.jar"              src="http://search.maven.org/remotecontent?filepath=org/json/json/20131018/json-20131018.jar" />
+		<get dest="${basedir}/lib/log4j-1.2.16.jar"               src="http://search.maven.org/remotecontent?filepath=log4j/log4j/1.2.16/log4j-1.2.16.jar" />
+		<mkdir dir="${extlib}"/>
+		<get dest="${extlib}/catalina-6.0.37.jar"                 src="http://search.maven.org/remotecontent?filepath=org/apache/tomcat/catalina/6.0.37/catalina-6.0.37.jar" />
+		<get dest="${extlib}/servlet-api-2.4.jar"                 src="http://search.maven.org/remotecontent?filepath=javax/servlet/servlet-api/2.4/servlet-api-2.4.jar" />
+	</target>
+</project>

@@ -1,0 +1,23 @@
+# config.json
+truncate.sh
+# setup.sh
+final/*
+.vscode/
+*/__pycache__/*
+*.pyc
+*.csv
+sql_tagme
+
+CONTAINER_ALREADY_STARTED_PLACEHOLDER
+
+# +----------------------------+
+# |    Keep .gitkeep files     |
+# +----------------------------+-------------------------------+
+# | To keep an empty directory, add a .gitkeep file to it      |
+# | and ignore the directory with a wildcard:                  |
+# |                                                            |
+# |     /path/to/dir/*                                         |
+# |                                                            |
+# | this will ignore the content but not the director itself.  |
+# +------------------------------------------------------------+
+!/**/.gitkeep

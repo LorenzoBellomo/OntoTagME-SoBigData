@@ -1,0 +1,34 @@
+<div class="container">
+  <br>
+  <br>
+
+  Insert an abstract of <a href="https://www.ncbi.nlm.nih.gov/pubmed/">PubMed</a> articles.
+
+  <br>
+  <br>
+
+  <textarea class="form-control tagme-text" [(ngModel)]="tagmeText"></textarea>
+
+  <br>
+
+  <div class="text-center">
+    <button class="btn btn-primary" (click)="tagme()">TAGME</button>
+  </div>
+
+  <br>
+  <br>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th *ngFor="let item of result[0] | keyvalue">{{ item.key }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of result">
+        <td *ngFor="let item of x | keyvalue">{{ item.value }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

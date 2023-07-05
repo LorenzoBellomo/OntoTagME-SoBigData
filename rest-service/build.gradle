@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'tagme-service'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+ant.importBuild('build.xml') {
+    String oldTargetName -> return 'ant_build'
+}
+
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile fileTree(include: ['*.jar'], dir: 'lib')
+    // compile fileTree(include: ['*.jar'], dir: 'ext_lib')
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+
+}
+
