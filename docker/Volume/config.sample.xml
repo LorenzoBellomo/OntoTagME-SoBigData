@@ -12,6 +12,7 @@
 
 	<langs>
 		<lang>en</lang>
+		<lang>mice</lang>
 	</langs>
 
 	<setting name="parsing">

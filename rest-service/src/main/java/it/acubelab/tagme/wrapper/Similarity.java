@@ -40,7 +40,7 @@ public class Similarity {
 		this.rel=rel;
 		annotator=new Annotator(lang);
 		try {
-			searcher = new TopicSearcher("en");
+			searcher = new TopicSearcher(lang);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

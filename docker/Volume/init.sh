@@ -9,6 +9,7 @@ then
    cp config.sample.xml tagme
    cp config.sample.xml multi-tagme-master_final/rest-service
    cp WikipediaAnchorParser.java tagme/src/it/acubelab/tagme/preprocessing/anchors
+   cp BestAnchors.java tagme/src/it/acubelab/tagme/preprocessing
    cp wikipatterns.properties tagme/repository
 
    cd tagme
@@ -35,9 +36,13 @@ then
    mv sql_tagme/enwiki-latest-pages-articles.xml  "$TAGME_PATH/repository/en/source/enwiki-latest-pages-articles.xml"
    mv sql_tagme/enwiki-latest-redirect.sql        "$TAGME_PATH/repository/en/source/enwiki-latest-redirect.sql"
 
+   cd /opt/tagme/stopwords
+   cp en.stopword mice.stopword
+
    echo "BEGIN TAGME INDEXING"
    cd $TAGME_PATH;
    ant index.light -Dconfig.file=config.sample.xml -Dmem=4G -Dlang=en
+   ant index.light -Dconfig.file=config.sample.xml -Dmem=4G -Dlang=mice
 fi
 
 echo "START ADAPTER SERVER"

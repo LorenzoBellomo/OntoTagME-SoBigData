@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # ADD  ./TopicalTagME/multi-tagme-master_final /opt/multi-tagme-master_final
 COPY ./Volume/config.sample.xml /opt/config.sample.xml
 COPY ./Volume/WikipediaAnchorParser.java /opt/WikipediaAnchorParser.java
+COPY ./Volume/BestAnchors.java /opt/BestAnchors.java
 COPY ./Volume/wikipatterns.properties /opt/wikipatterns.properties
 COPY ./Volume/init.sh .
 RUN chmod +x init.sh

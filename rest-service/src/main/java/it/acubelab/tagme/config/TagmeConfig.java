@@ -40,7 +40,7 @@ public class TagmeConfig {
 	static Logger log = Logger.getLogger(TagmeConfig.class);
 
 	public static final String 
-	ITALIAN = "it",
+	MICE = "mice",
 	ENGLISH = "en";
 
 	private static volatile Config conf = null;

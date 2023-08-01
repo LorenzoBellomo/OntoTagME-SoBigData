@@ -19,7 +19,6 @@ public class Application {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/tagme_string").allowedOrigins("*");
-                registry.addMapping("/tagme_string_legacy").allowedOrigins("*");
             }
         };
     }

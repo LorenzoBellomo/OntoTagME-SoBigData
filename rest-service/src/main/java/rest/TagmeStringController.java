@@ -2,6 +2,8 @@ package rest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import java.io.IOException;
@@ -38,54 +40,12 @@ public class TagmeStringController {
 	}
 
 
-	@CrossOrigin(origins="*")
-    @RequestMapping(value="/tagme_string_legacy", produces="application/json")
-	public String tagmeStringLegacy(@RequestParam(value="name", defaultValue="") String name) {
-          TagmeConfig.init();
-          String lang = "en";
-          AnnotatedText ann_text = new AnnotatedText(name);
-          RelatednessMeasure rel = RelatednessMeasure.create(lang);
-          String result = "{ \"response\": [\n";
-
-          try {
-              TagmeParser parser        = new TagmeParser(lang, true);
-              Disambiguator disamb      = new Disambiguator(lang);
-              Segmentation segmentation = new Segmentation();
-              RhoMeasure rho            = new RhoMeasure();
-              parser.parse(ann_text);
-              segmentation.segment(ann_text);
-              disamb.disambiguate(ann_text, rel);
-              rho.calc(ann_text, rel);
-
-              List<Annotation> annots   = ann_text.getAnnotations();
-              TopicSearcher    searcher = new TopicSearcher(lang);
-              List<TagmeAnnotation> final_annots = annotationPruningService
-                  .getTagmeAnnotation(annots, stopwordService, categService, ann_text, searcher);
-
-              for (TagmeAnnotation annot: final_annots) {
-                  result += "{" +
-                      "\"wid\":  \""       + annot.getWid()                                                                + "\",\n" +
-                      "\"spot\": \""       + annot.getSpot().replace("\'","'").replace("\\'","'").replace("\"", "'")       + "\",\n" +
-                      "\"rho\":  \""       + annot.getRho()                                                                + "\",\n" +
-                      "\"Word\": \""       + annot.getWord().replace("\'","'").replace("\\'","'").replace("\"", "'")       + "\",\n" +
-                      "\"originWord\": \"" + annot.getOriginWord().replace("\'","'").replace("\\'","'").replace("\"", "'") + "\",\n" +
-                      "\"categories\": ["  + annot.getCategories()                                                         + "],\n"  +
-                      "\"start_pos\": "    + annot.getStartPos()                                                           + ",\n"   +
-                      "\"end_pos\": "      + annot.getEndPos()                                                             + "\n"    +
-                      "},";
-              }
-          } catch (IOException e) {System.out.println("Exception");}
-
-          result = result.substring(0, result.length()-1); // remove useless comma
-          result +="\n]}";
-          return result;
-    }
-
     @CrossOrigin(origins="*")
-    @RequestMapping(value="/tagme_string", produces="application/json")
-	public String tagmeString(@RequestParam(value="name", defaultValue="") String name) {
+    @PostMapping(value="/tagme_string", produces="application/json", consumes="application/json")
+	public String tagmeString(@RequestBody Map<String, String> json) {
           TagmeConfig.init();
-          String lang = "en";
+          String lang = json.get("lang");
+          String name = json.get("name");
           RelatednessMeasure rel = RelatednessMeasure.create(lang);
           String result = "{ \"response\": [\n";
           int prev_length = 0;
