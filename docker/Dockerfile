@@ -3,8 +3,6 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive \
   JAVA_VERSION=jdk-11.0.10+9
 
-# add TopicalTagME under opt directory
-# ADD  ./TopicalTagME/multi-tagme-master_final /opt/multi-tagme-master_final
 COPY ./Volume/config.sample.xml /opt/config.sample.xml
 COPY ./Volume/WikipediaAnchorParser.java /opt/WikipediaAnchorParser.java
 COPY ./Volume/wikipatterns.properties /opt/wikipatterns.properties
@@ -34,6 +32,8 @@ RUN \
   pip3 install xmltodict &&  \
   pip3 install unidecode &&  \
   pip3 install nltk && \
+  pip3 install flask && \
+  pip3 install bioc && \
   pip3 install lxml
 
 

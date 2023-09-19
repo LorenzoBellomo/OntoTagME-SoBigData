@@ -31,13 +31,13 @@ ext_id_mapper = {
 }
 
 EXTERNAL_IDS = {}
-with open("../converters/database/biowiki/external_ids.csv", 'r', encoding='utf-8') as file:
+with open("/opt/multi-tagme-master_final/converters/external_ids.csv", 'r', encoding='utf-8') as file:
     for line in file.readlines():
         qid, title, ext_id, cats = line.split("\t")
         cats_list = [a for a in cats.split(";") if a != "NO TITLE"]
         EXTERNAL_IDS[ext_id] = {"qid": qid, 'title': title, 'cats': cats_list}
 
-with open("../converters/database/biowiki/page_dict.json", 'r') as json_file:
+with open("/opt/multi-tagme-master_final/converters/page_dict.json", 'r') as json_file:
     WIKIDATA_PAGE_DICT = json.load(json_file)
 
 def __annotate(text):

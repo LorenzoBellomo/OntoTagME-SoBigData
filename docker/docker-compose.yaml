@@ -12,4 +12,4 @@ services:
       - '8180:8080'
     volumes:
       - ./Volume:/Tagme:rw
-      - ../../TopicalTagME:/opt/multi-tagme-master_final:rw
+      - ../../OntoTagME-SoBigData:/opt/multi-tagme-master_final:rw
