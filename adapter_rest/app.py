@@ -40,7 +40,6 @@ with open("../converters/database/biowiki/external_ids.csv", 'r', encoding='utf-
 with open("../converters/database/biowiki/page_dict.json", 'r') as json_file:
     WIKIDATA_PAGE_DICT = json.load(json_file)
 
-PROGRESS = {}
 def __annotate(text):
     payload = {"name": text}
     r = requests.post(URL, payload)
@@ -394,10 +393,7 @@ def get_netme_annotation():
 def get_netme_annotation_list():
     idlist = request.json['idlist']
     mode = request.json['mode'] if 'mode' in request.json else 'pmc'
-    token = request.json['token'] if 'token' in request.json else None
     idlist_str = idlist.split(",")
-    if token:
-        PROGRESS[token] = ((1, len(idlist_str)))
     pubtator = __annotate_pubtator(idlist, mode)
     final_result = []
     not_failed = []
@@ -413,26 +409,11 @@ def get_netme_annotation_list():
                 annotations, article = __annotate_new_pmc_format(article_tmp)
                 final_result.append({'annotations': __cleanup_annots(annotations), 'mode': 'ontotagme', 'a_id': a_id, 'content': article})
                 not_failed.append(a_id)
-        if token:
-            PROGRESS[token] = ((i+1, len(idlist_str)))
             
     for a_id in [x for x in idlist_str if x not in not_failed]:
         final_result.append({"failed": "not found", "a_id": a_id})
-    
-    if token:
-        del(PROGRESS[token])
 
     return json.dumps(final_result)
-
-@api.route('/get_progress_log', methods=['GET'])
-def log_progress():
-    token = request.args.get('token')
-    if token in PROGRESS:
-        curr, len_ = PROGRESS[token]
-        prog_str = "OntoTagME is processing article {} out of {}".format(curr, len_)
-    else:
-        prog_str = "Unable to compute OntoTagME progress"
-    return json.dumps({'token': token, 'progress': prog_str})
 
 @api.route('/annotate_by_text', methods=['POST'])
 def get_annotations_by_text(): 
