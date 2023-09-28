@@ -7,6 +7,7 @@ COPY ./Volume/config.sample.xml /opt/config.sample.xml
 COPY ./Volume/WikipediaAnchorParser.java /opt/WikipediaAnchorParser.java
 COPY ./Volume/wikipatterns.properties /opt/wikipatterns.properties
 COPY ./Volume/init.sh .
+ADD ./Volume/multi-tagme-master_final /opt/multi-tagme-master_final
 RUN chmod +x init.sh
 
 # programs installation
