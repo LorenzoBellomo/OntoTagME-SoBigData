@@ -2,7 +2,7 @@ version: '3.8'
 
 # services
 services:
-  topicalTagme:
+  ontotagme:
     image: ontotagme:latest
     container_name: ontotagme
     build:
@@ -10,6 +10,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - '8180:8080'
-    volumes:
-      - ./Volume:/Tagme:rw
-      - ../../OntoTagME-SoBigData:/opt/multi-tagme-master_final:rw

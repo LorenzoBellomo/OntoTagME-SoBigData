@@ -7,7 +7,7 @@ COPY ./Volume/config.sample.xml /opt/config.sample.xml
 COPY ./Volume/WikipediaAnchorParser.java /opt/WikipediaAnchorParser.java
 COPY ./Volume/wikipatterns.properties /opt/wikipatterns.properties
 COPY ./Volume/init.sh .
-ADD ./Volume/multi-tagme-master_final /opt/multi-tagme-master_final
+COPY ./ /opt/multi-tagme-master_final
 RUN chmod +x init.sh
 
 # programs installation
@@ -95,6 +95,6 @@ RUN echo "TAGME downloading...." && \
   cd /opt && \
   git clone https://github.com/gammaliu/tagme/
   
-# configure TopicalTagME db
+# configure OntoTagME db
 CMD ["bin/bash", "./init.sh"]
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
+# ENTRYPOINT ["tail", "-f", "/dev/null"] 
